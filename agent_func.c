@@ -1,6 +1,7 @@
 #include"agent.h"
-#include<stdio.h>
-#include<stdlib.h>
+
+
+
 void show_strat(agent* computer){
 for (int i = 0; i < N; i++){
 	if(i%10==0)
@@ -13,7 +14,7 @@ printf("\n\n");
 
 
 int show_status(agent* computer){
-	int cnts,cnt_res;
+	int cnts=0,cnt_res=0;
 for (int i = 0; i < N; i++){
 	if(i%10==0)
 		printf("\n");
@@ -60,9 +61,17 @@ int set_error(agent* computer){
 return cnt;
 }
 
-int mesure_res(agent* computer){
-	int res=0;
+double mesure_res(agent* computer){
+	double res=0.0;
 	for (int n= 0; n < N; n++)
 		res+=computer[n].resource;
 	return res;
+}
+
+void set_pos(agent* computer,field size){
+	for (int y= 0; y <size.height; y++)
+		for (int x= 0; x <size.width ;x++){	
+			computer[y*10+x].posx=x;
+			computer[y*10+x].posy=y;
+		}
 }

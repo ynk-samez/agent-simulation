@@ -26,11 +26,11 @@ typedef struct {
 	int posy;
 }agent;
 
-
+void set_pos(agent* ,const field);
 void show_strat(agent*);
 int show_status(agent*);
 int set_error( agent*);
 int set_strat(agent*,const int );
-int mesure_res( agent* );
+double mesure_res( agent*);
 
 #endif
