@@ -1,10 +1,16 @@
-#pragma once
+#ifndef AGENT_H
+#define AGENT_H
+
+#include<stdbool.h>
+#include<stdio.h>
+#include<stdlib.h>
+
 
 #define N 100 /*agent数*/
 #define S_MAX 500
 #define HEIGHT 10
 #define WIDTH 10
-#include<stdbool.h>
+
 
 
 typedef struct{
@@ -26,3 +32,5 @@ int show_status(agent*);
 int set_error( agent*);
 int set_strat(agent*,const int );
 int mesure_res( agent* );
+
+#endif
