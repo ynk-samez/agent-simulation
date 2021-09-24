@@ -48,50 +48,42 @@ for (n= 0; n < N; n++){
 set_strat(computer,p);
 tag_pos=rand()%4+1;
 if(computer[n].strat==1){
-	computer[n].resource=computer[n].resource-0.1;
+	computer[n].resource-=0.5;
 	switch(tag_pos){
-			case 1:/*tag->up*/
-				if(n-10<0){
-				computer[n+90].status=computer[n].status;
-			if(computer[n+90].status==0)
-				computer[n+90].resource=1;				
+			case 1:/*tag->right*/
+				if(computer[n+1].posx!=size.width){//相手が右端でない
+				computer[n+1].status=computer[n].status;
+				resource_calc(computer[n+1]);
 				}else{	
-				computer[n-10].status=computer[n].status;
-			if(computer[n-10].status==0)
-				computer[n-10].resource=1;
+				computer[n-size.width].status=computer[n].status;
+				resource_calc(computer[n-size.width]);
 				}
 			break;
-			case 2:/*tag->down*/
-				if(n+10>90){
-				computer[n-90].status=computer[n].status;	
-			if(computer[n-90].status==0)
-				computer[n-90].resource=1;
+			case 2:/*tag->left*/
+				if(computer[n-1].posx!=0){
+				computer[n-1].status=computer[n].status;	
+				resource_calc(computer[n-1]);
 				}else{
-				computer[n+10].status=computer[n].status;
-			if(computer[n+10].status==0)
-				computer[n+10].resource=1;
+				computer[n+size.width].status=computer[n].status;
+				resource_calc(computer[n+size.width]);
 			}
 			break;
-			case 3:/*tag->left*/
-				if(n-1<computer[n].posy*10){
-				computer[n+9].status=computer[n].status;	
-			if(computer[n+9].status==0)
-					computer[n+9].resource=1;	
+			case 3:/*tag->up*/
+				if(computer[n].posy>=0){
+				computer[n-size.height].status=computer[n].status;	
+				resource_calc(computer[n-size.height]);
 				}else{	
-				computer[n-1].status=computer[n].status;
-			if(computer[n-1].status==0)
-					computer[n-1].resource=1;
+				computer[n+size.width*size.height-size.width].status=computer[n].status;
+				resource_calc(computer[n+size.width*size.height-size.width]);
 			}
 			break;
-			case 4:/*tag->right*/
-				if(n+1>computer[n].posy*10){
-				computer[computer[n].posy*10].status=computer[n].status;		
-			if(computer[n].status==0)
-					computer[n].resource=1;	
+			case 4:/*tag->down*/
+				if(computer[n].posy+size.height<size.width*size.height){
+				computer[n+size.height].status=computer[n].status;
+				resource_calc(computer[n+size.height]);		
 				}else{
-				computer[n+1].status=computer[n].status;
-			if(computer[n+1].status==0)
-					computer[n+1].resource=1;
+				computer[n-size.width*size.height-size.height].status=computer[n].status;
+				resource_calc(computer[n-size.width*size.height-size.height]);
 			}	
 			break;	
 			default:

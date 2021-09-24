@@ -31,6 +31,7 @@ void show_strat(agent*);
 int show_status(agent*);
 int set_error( agent*);
 int set_strat(agent*,const int );
+void resource_calc(agent);
 double mesure_res( agent*);
 
 #endif

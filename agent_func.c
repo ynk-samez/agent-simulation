@@ -14,7 +14,8 @@ printf("\n\n");
 
 
 int show_status(agent* computer){
-	int cnts=0,cnt_res=0;
+	int cnts=0;
+	double cnt_res=0;
 for (int i = 0; i < N; i++){
 	if(i%10==0)
 		printf("\n");
@@ -28,7 +29,7 @@ for (int i = 0; i < N; i++){
 
 }
 	printf("\n異常エージェント発生数:%d\n",cnts);
-	printf("\n全体リソース量:%d\n",cnt_res);
+	printf("\n全体リソース量:%f\n",cnt_res);
 	return cnts;
 }
 
@@ -38,13 +39,13 @@ int cnt_dash=0;
 for (int n= 0; n < N; n++){
 	computer[n].resource=1;
 	int temp=rand()%100;
-if(computer[n].status==1)computer[n].resource=0.5;
+if(computer[n].status==true)computer[n].resource=0.5;
 
 if(temp < p){
-	computer[n].strat=1;
+	computer[n].strat=true;
 	cnt_dash++;
 }else{ 
-	computer[n].strat=0;
+	computer[n].strat=false;
 	}
 }
 return cnt_dash;
@@ -74,4 +75,9 @@ void set_pos(agent* computer,field size){
 			computer[y*10+x].posx=x;
 			computer[y*10+x].posy=y;
 		}
+}
+
+void resource_calc(agent computer){
+		if(computer.status==true)computer.resource==(double)1.0;
+		else computer.resource-=0.25;
 }
